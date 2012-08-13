@@ -1,0 +1,88 @@
+body{
+	font-family: "Helvetica Neue", "Arial", sans-serif;
+}
+
+circle.node {
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+.storyHeading{
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	width: 800px;
+	height: 40px;
+}
+
+.node {
+  font: 12px sans-serif;
+}
+
+div{
+	top: 50px;
+}
+
+div.node {
+  border-radius: 6px;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  position: absolute;
+}
+
+div.link {
+  position: absolute;
+  border-bottom: solid #666 1px;
+  height: 0;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+line.link {
+  stroke: #000;
+  stroke-opacity: .6;
+}
+
+.tropeBar{
+	position: relative;
+	font-size:11px;
+	top: 50px;
+	left: 700px;
+	width: 400px;
+	height: 300px;
+}
+
+.charBar{
+	position: absolute;
+	font-size:11px;
+	top: 250px;
+	left: 710px;
+	width: 400px;
+	height: 300px;
+}
+
+rect{
+	fill:none;
+	stroke-width:0.5;
+	stroke:black;
+}
+
+line.axis {
+	stroke:black;
+	stroke-width: 1;
+	fill:none;
+}
+
+/*.rule line {
+	stroke:#eee;
+	stroke-width: 5;
+}
+
+.rule line.axis {
+	stroke:#ccc;
+	stroke-width:2;
+}*/

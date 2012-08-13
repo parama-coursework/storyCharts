@@ -1,0 +1,35 @@
+div.navbar {
+  height: 50px;
+}
+
+.chartTitle{
+	text-align: center;
+	font-size: large;
+	color: #000;
+	padding-top: 5px;
+}
+
+.sidebar{
+	/*border-right: 1px solid #eee;*/
+	background: #eee;
+	
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.storyTitle{
+	font-size: medium;
+	color: #000;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.storyDescription{
+	font-size: small;
+	color: #000;
+	padding-top: 10px;
+	padding-right: 10px;
+}
