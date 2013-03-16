@@ -9,6 +9,11 @@ div.navbar {
 	padding-top: 5px;
 }
 
+marker#arrow {
+    stroke: #999;
+    fill: #999;
+}
+
 .sidebar{
 	/*border-right: 1px solid #eee;*/
 	background: #eee;
