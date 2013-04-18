@@ -1,6 +1,7 @@
 var title = "Snow White and the Seven Dwarfs"
 var author = "unknown"
-var description = "German fairy tale known in many countries in Europe, the best known version being the German one collected by the Brothers Grimm in 1812 (German: Schneewittchen und die sieben Zwerge, ''Snow White and the Seven Dwarfs''). The German version features such elements as the magic mirror, the poisoned apple, the glass coffin, and the seven dwarfs, who were first given individual names in the Broadway play Snow White and the Seven Dwarfs (1912) and then given different names in Walt Disney's 1937 film Snow White and the Seven Dwarfs. The Grimm story, which is commonly referred to as ''Snow White'', should not be confused with the story of ''Snow White and Rose Red'', another fairy tale collected by the Brothers Grimm (in German ''Schneeweißchen'', rather than ''Schneewittchen'')."
+var description = "German fairy tale known in many countries in Europe, the best known version being the German one collected by the Brothers Grimm in 1812. The German version features such elements as the magic mirror, the poisoned apple, the glass coffin, and the seven dwarfs, who were first given individual names in the Broadway play Snow White and the Seven Dwarfs (1912) and then given different names in Walt Disney's 1937 film Snow White and the Seven Dwarfs."
+
 var events = [ 
 	"Queen pricks finger, sees blood in snow",
 	"Queen wishes for a child with snow white skin",

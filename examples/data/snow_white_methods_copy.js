@@ -345,258 +345,129 @@ function tfTropes(trope)
 
 function outlineNodes (bls, color)
 {
-	if(expandedBubbles)
-	{
-		var vis = d3.selectAll("#chartBox")
-			.attr("class","chartBoxDivCanvas")
-			.style("width", "auto")
-		    .style("height", "auto");
 		
-		var node = vis.selectAll("div.node");
-
-		node.style("border-style", "solid")
-			.style("border-width", function(d,i){
-
-				if(bls[i])
-				{
-					return "3px";
-				}
-				else   
-				{
-					return "0px";
-					//return "lightgrey";
-				} 
-			})
-			//.style("width", nodeX+"px")
-			//.style("color","lightgrey");
-			.style("color", function(d,i){
-
-				if(bls[i])
-				{
-					return "black";
-				}
-				else   
-				{
-					return "grey";
-					//return "lightgrey";
-				} 
-			});
-
-	}
-
-	else {
-		
-		circle.style("stroke",function(d,i){
-				if(bls[i])
-				{return color;}
-				else
-				{
-					console.log("circle.style set color for outline of node");
-					return "#aaa";
-				}
-				})
-			 .style("opacity", function(d,i){
-				if(bls[i])
-				{
-					console.log("circle id is: "+i);
-					return 1;
-				}
-				else
-				{
-					return .3;
-				}
-				})
-			 .style("stroke-width", function(d,i){
-				if(bls[i])
-				{
-					return 1.5+"px";
-				}
-				else
-				{
-					return .5+"px";
-				}
-			 });
-		}
-
-		path.style("opacity", function(d,i){
-
-			if(bls[d.target.id] || bls[d.source.id]){
-				return .7
-			}
+	circle.style("stroke",function(d,i){
+			if(bls[i])
+			{return color;}
 			else
 			{
-				return .2;
+				return "#aaa";
 			}
-		})
-			.attr("marker-end", function(d) { 
-				if(bls[d.target.id] || bls[d.source.id]){
-					return "url(#" + "background" + ")";
-					}
-				else{
-					return "url(#" + d.type + ")";
-				}
-				});
-	
-}
-
-function highlightNodes (bls, colorScale)
-{ //find out if its the same object...
-	
-	if(expandedBubbles)
-	{
-		var vis = d3.selectAll("#chartBox")
-			.attr("class","chartBoxDivCanvas")
-			.style("width", "auto")
-		    .style("height", "auto");
-		var node = vis.selectAll("div.node");
-		node.style("opacity", function(d,i){
+			})
+		 .style("opacity", function(d,i){
 			if(bls[i])
-			{
-				console.log("activated highlightNodes");
-				return 1;
+			{return 1;
 			}
 			else
 			{
 				return .3;
 			}
-		});
-
-		/*.style("background", function(d) {
-		 		//console.log("d.id "+d.id)
-				//console.log("nodevals[d.id] "+nodevals[d.id])
-				if(nodevals[d.id]==0)
-				{
-					return "lightgrey"
-				}
-				else   
-				{
-					return fill20b(2*nodevals[d.id]);
-				} 
-				})*/
-	      	/*.style("border-color", function(d) { 
-				return d3.rgb(fill(d.group)).darker(); 
-				})*/
-
-	}
-
-	else
-	{
-
-		circle.style("opacity", 
-			function(d,i)
-			{
-				if(bls[i])
-				{
-					console.log("activated highlightNodes");
-					return 1;
-				}
-				else
-				{
-					return .3;
-				}
 			})
-			 .style("stroke-width", function(d,i){
-					if(bls[i])
-					{
-						return 1.5+"px";
-					}
-					else
-					{
-						return .5+"px";
-					}
-			 	});
-	}
-
-		path.style("opacity", function(d,i){
-			if(bls[d.target.id] || bls[d.source.id]){
-				console.log("path opacity shouldn't change");
-				return .7
+		 .style("stroke-width", function(d,i){
+			if(bls[i])
+			{
+				return 1.5+"px";
 			}
 			else
 			{
-				return .2;
+				return .5+"px";
 			}
-		})
-			.attr("marker-end", function(d) 
-			{ 
-				if(bls[d.target.id] || bls[d.source.id])
-				{
-					return "url(#" + "background" + ")";
+		 });
+
+	path.style("opacity", function(d,i){
+
+		if(bls[d.target.id] || bls[d.source.id]){
+			return .7
+		}
+		else
+		{
+			return .2;
+		}
+	})
+		.attr("marker-end", function(d) { 
+			if(bls[d.target.id] || bls[d.source.id]){
+				return "url(#" + "background" + ")";
 				}
-				else
-				{
-					return "url(#" + d.type + ")";
-				}
+			else{
+				return "url(#" + d.type + ")";
+			}
 			});
+}
+
+function highlightNodes (bls, colorScale)
+{
 	
+	circle.style("opacity", function(d,i){
+			if(bls[i])
+			{return 1;
+			}
+			else
+			{
+				return .3;
+			}
+			})
+		 .style("stroke-width", function(d,i){
+			if(bls[i])
+			{
+				return 1.5+"px";
+			}
+			else
+			{
+				return .5+"px";
+			}
+		 });
+
+	path.style("opacity", function(d,i){
+		if(bls[d.target.id] || bls[d.source.id]){
+			return .7
+		}
+		else
+		{
+			return .2;
+		}
+	})
+		.attr("marker-end", function(d) { 
+			if(bls[d.target.id] || bls[d.source.id]){
+				return "url(#" + "background" + ")";
+				}
+			else{
+				return "url(#" + d.type + ")";
+			}
+			});
 }
 
 function restoreNodes (bls, colorScale)
 {
-	if(expandedBubbles)
-	{
-		var vis = d3.selectAll("#chartBox")
-			.attr("class","chartBoxDivCanvas")
-			.style("width", "auto")
-		    .style("height", "auto");
 		
-		var node = vis.selectAll("div.node");
-
-		node.style("border-style", "solid")
-			.style("border-width", "0px")
-			//.style("width", nodeX+"px")
-			//.style("color","lightgrey");
-			.style("color", function(d,i){
-
-				if(bls[i])
-				{
-					return "lightgrey";
-				}
-				else   
-				{
-					return "black";
-					//return "lightgrey";
-				} 
-			});
-
-		node.style("opacity", .9);
-
-	}
-	else
-	{	
-		circle.style("stroke",function(d,i){
-			return "#aaa";}
-			)
-			 .style("opacity", function(d,i){
-				if(bls[i])
-				{return 1;
-				}
-				else
-				{
-					return 1;
-				}
-				})
-			 .style("stroke-width", function(d,i){
-				if(bls[i])
-				{
-					return 1.5+"px";
-				}
-				else
-				{
-					return .5+"px";
-				}
-			 });
-
-		path.style("opacity", function(d,i){
-			if(bls[d.target.id] || bls[d.source.id]){
-				return .7;
+	circle.style("stroke",function(d,i){
+		return "#aaa";}
+		)
+		 .style("opacity", function(d,i){
+			if(bls[i])
+			{return 1;
 			}
-		})
-			.attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
-	}
+			else
+			{
+				return 1;
+			}
+			})
+		 .style("stroke-width", function(d,i){
+			if(bls[i])
+			{
+				return 1.5+"px";
+			}
+			else
+			{
+				return .5+"px";
+			}
+		 });
+	path.style("opacity", function(d,i){
+		if(bls[d.target.id] || bls[d.source.id]){
+			return .7;
+		}
+	})
+		.attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 }
-
-/* ~~~~~~~~~~ Transition DISPLAY FUNCTIONS ~~~~~~~~~~~~~~~~~ */
 
 function expandNodes(){
 
@@ -609,14 +480,9 @@ function expandNodes(){
 	{
 		expandedBubbles = true;
 
-		var fill20b = d3.scale.category20b();
-		for (i = 0; i < 20; i++) {
-	    	fill20b(i);
-		}
+		var fill = d3.scale.category20b();
 
-		//remove circle svg objects via the g object that they are under, 
-		//the axes and links are still there. 
-
+		//circle.style("opacity", 0);
 		$("circle").parent().remove();
 
 		var vis = d3.selectAll("#chartBox").append('div')
@@ -624,7 +490,6 @@ function expandNodes(){
 			.style("width", "auto")
 		    .style("height", "auto");
 
-		//add divs to serve as nodes
 		var node = vis.selectAll("div.node")
 	      	.data(nodes)
 	    	.enter().append("div")
@@ -633,12 +498,10 @@ function expandNodes(){
 		 		//console.log("d.id "+d.id)
 				//console.log("nodevals[d.id] "+nodevals[d.id])
 				if(nodevals[d.id]==0)
-				{
-					return "lightgrey"
-				}
+				{return "lightgrey"}
 				else   
 				{
-					return fill20b(18 - 2*(nodevals[d.id]-1));
+					return fill(nodevals[d.id]);
 				} 
 				})
 	      	/*.style("border-color", function(d) { 
@@ -662,21 +525,23 @@ function expandNodes(){
 			.text(function(d) { return d.name; });
 
 		node.style("border-style", "solid")
-			.style("border-width", "0px")
+			.style("border-width", "2px")
 			.style("width", nodeX+"px")
-			//.style("color","lightgrey");
-			.style("color", function(d,i){
-
-				if(nodevals[d.id]==0)
+			
+			.style("border-color", function(d) { if(selectedChars.length===0)
+				{return "transparent" /*d3.rgb(fill(d.group)).darker()*/;}
+				else
 				{
-					return "black";
+					if(selectedChars[d.id]===true)
+					{
+						return "black";
+					}
+					else
+					{
+						return "transparent";
+					}
 				}
-				else   
-				{
-					//return fill20b(2*nodevals[d.id]);
-					return "#EDEDED";
-				} 
-			});
+				});
 
 		function tick() {
 		    /*node.style("left",  function(d) { return (d.x = Math.max(r, nodeX*d.value+20 )) + "px"; })
@@ -736,61 +601,42 @@ function contractNodes() {
 		return;
 	}
 
-	else
-	{
+	else{
 
 		expandedBubbles = false;
+
+	    var fill = d3.scale.category20b();
+
+	    xcoords = [];
+	    ycoords = [];
+
+	    //circle.style("opacity", 1);
+	    circle.style("opacity", function(d, i) {
+	        xcoords.push(d.x);
+	        ycoords.push(d.y);
+	        return 1;
+	    });
+
+	    console.log("circle ycoords: " + ycoords);
 
 
 	    d3.selectAll("div.node").remove();
 	    d3.selectAll("path").remove();
-	    //d3.selectAll("div.chartBoxDivCanvas").remove();
+	    d3.selectAll("div.chartBoxDivCanvas").remove();
 
-	    force.on("tick", tick).start();
-
-	    svg.append("svg:defs").selectAll("marker")
-	    	.data(["causal", "background"])
-	    	.enter().append("svg:marker")
-	    	.attr("id", String)
-	    	.attr("viewBox", "0 -5 10 10")
-	    	.attr("refX", 15)
-	    	.attr("refY", -1.5)
-	    	.attr("markerWidth", 6)
-	    	.attr("markerHeight", 6)
-	    	.attr("orient", "auto")
-	    	.append("svg:path")
-	    	.attr("d", "M0,-5L10,0L0,5");
+	    svg.append("svg:defs").selectAll("marker").data(["causal", "background"]).enter().append("svg:marker").attr("id", String).attr("viewBox", "0 -5 10 10").attr("refX", 15).attr("refY", -1.5).attr("markerWidth", 6).attr("markerHeight", 6).attr("orient", "auto").append("svg:path").attr("d", "M0,-5L10,0L0,5");
 
 
 
-		/*var path = svg.append("svg:g").selectAll("path").data(force.links()).enter().append("svg:path").attr("class", function(d) {
-		    return "link " + d.type;
-		}).attr("marker-end", function(d) {
-		    return "url(#" + d.type + ")";
-		});*/
-		path = svg.append("svg:g").selectAll("path").data(force.links()).enter().append("svg:path").attr("class", function(d) {
-		    return "link " + d.type;
-		}).attr("marker-end", function(d) {
-		    return "url(#" + d.type + ")";
-		});
-
-
-		circle = svg.append("svg:g").selectAll("circle").data(force.nodes()).enter().append("svg:circle").attr("r", 6).style("fill", function(d) {
-			    if (nodevals[d.id] == 0) {
-			        return "lightgrey"
-			    } else {
-			        return fill20b(18 - 2*(nodevals[d.id]-1))
-			    };
-			}).call(force.drag);
-
-		text = svg.append("svg:g")
-					.selectAll("g")
-					.data(force.nodes())
-					.enter()
-					.append("svg:g");
+	    path = svg.append("svg:g").selectAll("path").data(force.links()).enter().append("svg:path").attr("class", function(d) {
+	        console.log("drawing paths now for contract nodes");
+	        return "link " + d.type;
+	    }).attr("marker-end", function(d) {
+	        return "url(#" + d.type + ")";
+	    });
 
 	    //reposition the path object
-	    /*var circleEltYPos = $("circle").parent().offset().top,
+	    var circleEltYPos = $("circle").parent().offset().top,
 	        pathEltYPos = $("path.link").parent().offset().top,
 	        posDif = circleEltYPos - pathEltYPos;
 
@@ -804,50 +650,13 @@ function contractNodes() {
 	    pathways.attr("transform", function(d, i) {
 	        //console.log("let's see if this is used");
 	        return "translate(" + 0 + "," + (posDif-r  ) + ")";
-	    });*/
+	    });
 
 	    //calculate the difference if any in where the divs are positioned for the paths and the circles. 
 
-	    //circle.call(force.drag);
+	    circle.call(force.drag);
 
-	    function tick() 
-	    {
-
-
-	//var st = Math.max(r, padX);
-	//var edpt = st + nodeX * totTm;
-
-	    circle.attr("transform", function(d, i) {
-	        d.x = Math.max(r, padX) + (d.time-1)*nodeX;
-	        d.y = Math.max(r, Math.min(h - (1.5 * r + 100 + 5), d.y));
-	        return "translate(" + d.x + "," + d.y + ")";
-	    });
-
-	    path.attr("d", function(d) {
-	        var dx = d.target.x - d.source.x,
-	            dy = d.target.y - d.source.y,
-	            //dr = Math.sqrt(dx * dx + dy * dy);
-	            dr = 0;
-	        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-	    });
-
-
-
-	    text.attr("transform", function(d) {
-	        return "translate(" + d.x + "," + d.y + ")";
-	    });
-
-	    $('circle').tipsy({
-	        gravity: 'se',
-	        html: true,
-	        title: function(d) {
-	            d = this.__data__; //console.log(d);
-	            return d.name;
-	        }
-	    });
-		}
-
-	    /*function tick() {
+	    function tick() {
 
 	        console.log("contractNodes tick function was used");
 
@@ -908,7 +717,7 @@ function contractNodes() {
 	        text.attr("transform", function(d) {
 	            return "translate(" + d.x + "," + d.y + ")";
 	        });
-	    }*/
+	    }
 	}
 }
 

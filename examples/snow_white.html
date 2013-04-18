@@ -9,9 +9,9 @@
 		<script type="text/javascript" src="lib/jquery.tipsy.js"></script> 
 		
 		<!--Load Styles-->
-		<link rel="stylesheet" href="../styles/themes/journal/bootstrap.min.css">
-		<link rel="stylesheet/less" href="../styles/themes/journal/bootswatch.less">
-		<link rel="stylesheet/less" href="../styles/themes/journal/variables.less">
+		<link rel="stylesheet" href="../styles/themes/simplex/bootstrap.min.css">
+		<link rel="stylesheet/less" href="../styles/themes/simplex/bootswatch.less">
+		<link rel="stylesheet/less" href="../styles/themes/simplex/variables.less">
 		<link rel="stylesheet/less" href="../styles/less-1.3.0.min.less">
 		<link type="text/css" rel="stylesheet" href="../styles/tipsy.css">
 		<link type="text/css" rel="stylesheet" href="../styles/force2.css">
@@ -19,6 +19,12 @@
 		
 		<!--Load Story Data-->
 		<script type="text/javascript" src="data/snow_white.js"></script>
+
+		<style type="text/css">
+  			body{
+    				/*background-color: #ffffff */
+    			}
+  </style>
 		
 	</head>
 	
@@ -31,11 +37,8 @@
 				<div class="container">
 					<a class="brand">Story Charts</a>
                     <ul class="nav">
-						<li class="active"><a href="../home.html">Home</a></li>
-						<li ><a href="../background.html">Background</a></li>
 		                <li ><a href="../methods.html">Methods</a></li>
 		                <li ><a href="../examples.html">Examples</a></li>
-		                <li ><a href="../resources.html">Resources</a></li>
 		                <li ><a href="../assignments.html">Assignments</a></li>
 		                <li ><a href="../thanks.html">Thanks</a></li>
 					</ul>
@@ -45,7 +48,7 @@
 		
 	<!--Page Content-->
 		
-		<div class="container-fluid">
+		<!-- <div class="container-fluid">
 			<div class="row-fluid">  
 		    	<div class="span2">  
 				<div class="sidebar">
@@ -55,8 +58,20 @@
 					<div class ="storyDescription"></div>
 				</div>
 				</div>
-				<div class="span10">  
+				<div class="span10">  ////ERASE THIS -->
 		     	<!--Body content-->
+
+		<div class="container-fluid">
+			<div class="row-fluid">  
+				<div class ="foo">
+					<div class ="storyTitle"></div>
+				</div>
+
+			</div>
+
+			<div class="row-fluid"> 
+
+				<div class="span12"> 
 				<div class="row-fluid">
 					
 					<div class="span8"> <!--contains the chart name and chart box-->
@@ -74,9 +89,14 @@
 					</div>
 					
 		    	</div>
-				</div>  
+				</div> 
 			</div>
-		</div>
+
+			<div class ="row-fluid">
+				<div class ="storyDescription"></div>
+			</div>
+
+		</div> 
 		
 		
 	<script type="text/javascript">
@@ -89,7 +109,7 @@
 	
 	descriptor = $("div.storyDescription");
 	descriptor.append("svg:text")
-		.text(description)
+		.text("Summary: " + description)
 		.attr("x", 20)
 		.attr("y", 20);
 	
@@ -102,7 +122,7 @@
 		//define variables
 		var w = widthBox,
 			//w=1400,
-		    h = 600,
+		    h = 550,
 		    r = 6,
 			times = timepoints;
 			nodeX = Math.floor(w/(timepoints.length+1))
@@ -111,7 +131,7 @@
 			//padY = Math.floor(nodeY/2);
 			padX = Math.floor(posBox);
 			padY = Math.floor(100);
-		    fill = d3.scale.category20();
+		    fill = d3.scale.category10();
 			currentHighlights = [];
 			selectedChars = [];
 			
@@ -180,6 +200,7 @@
 				return d3.rgb(fill(d.group)).darker(); 
 				})*/
 			.style("opacity", .9)
+			.style("width", nodeX)
 			.call(force.drag);
 		
 		force
@@ -191,11 +212,11 @@
 		 	.attr("dy", ".41em")
 			.attr("text-anchor", function(d) { return d.x < 180 ? 100 : "end"; })
 			.attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
-			//.text(function(d) { return d.name; });
-			.text(function(d) { return " - "; });
+			.text(function(d) { return d.name; });
+			//.text(function(d) { return " - "; });
 		
 		$('.node').tipsy({
-			gravity: 'w',
+			gravity: 'e',
 			html: true,
 			title: function(d) { 
 				d= this.__data__; //console.log(d);
@@ -204,6 +225,7 @@
 
 		node.style("border-style", "solid")
 			.style("border-width", "2px")
+			.style("width", nodeX+"px")
 			.style("border-color", function(d) { if(selectedChars.length===0)
 				{return "transparent" /*d3.rgb(fill(d.group)).darker()*/;}
 				else
@@ -217,7 +239,7 @@
 						return "transparent";
 					}
 				}
-				})
+				});
 			
 	
 		//helper functions
@@ -271,7 +293,7 @@
 	    agey = d3.scale.ordinal().domain(d3.range(dataB.length)).rangeBands([0, tBarH]);
 		size = 600;
 		padding = 20;
-		fill = d3.scale.category20();
+		fill = d3.scale.category10();
 
 
 	var tropeBar = d3.select("#tropeBar")
@@ -367,7 +389,7 @@
 		    chary = d3.scale.ordinal().domain(d3.range(dataB.length)).rangeBands([0, cBarH]);
 			size = 300;
 			padding = 20;
-			fill = d3.scale.category20c();
+			fill = d3.scale.category10c();
 
 
 		var charBar = d3.select("#charBar")

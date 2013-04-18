@@ -25,6 +25,8 @@ Data Tables, and Dictionaries
 
 		event_descriptions, time points, characters present, themes, tropes
 
+		- events vs columns: time points, characters, themes, tropes (4 tables)
+
 	Dictionaries:
 
 		characters -> (abbreviations, traits)
@@ -41,9 +43,9 @@ Nodes, Links, Data Field
 
 //~~~~~~~~~ FRAME VARIABLES ~~~~~~~~~//
 
-var title = "Snow White and the Seven Dwarfs"
-var author = "unknown"
-var description = "German fairy tale known in many countries in Europe, the best known version being the German one collected by the Brothers Grimm in 1812 (German: Schneewittchen und die sieben Zwerge, ''Snow White and the Seven Dwarfs''). The German version features such elements as the magic mirror, the poisoned apple, the glass coffin, and the seven dwarfs, who were first given individual names in the Broadway play Snow White and the Seven Dwarfs (1912) and then given different names in Walt Disney's 1937 film Snow White and the Seven Dwarfs. The Grimm story, which is commonly referred to as ''Snow White'', should not be confused with the story of ''Snow White and Rose Red'', another fairy tale collected by the Brothers Grimm (in German ''Schneeweißchen'', rather than ''Schneewittchen'')."
+var title = "Snow White and the Seven Dwarfs";
+var author = "unknown";
+var description = "German fairy tale known in many countries in Europe, the best known version being the German one collected by the Brothers Grimm in 1812 (German: Schneewittchen und die sieben Zwerge, ''Snow White and the Seven Dwarfs''). The German version features such elements as the magic mirror, the poisoned apple, the glass coffin, and the seven dwarfs, who were first given individual names in the Broadway play Snow White and the Seven Dwarfs (1912) and then given different names in Walt Disney's 1937 film Snow White and the Seven Dwarfs. The Grimm story, which is commonly referred to as ''Snow White'', should not be confused with the story of ''Snow White and Rose Red'', another fairy tale collected by the Brothers Grimm (in German ''Schneeweißchen'', rather than ''Schneewittchen'').";
 
 //~~~~~~~~~ STORY ELEMENTS ~~~~~~~~~//
 
@@ -127,8 +129,12 @@ var characters = [{"name":"King", "traits":[""], "id":"K"}, {"name":"Old Queen",
 //themes: birth, death, joy, good, evil, beauty, inclusion, exclusion, revenge, pursuit of power -> pick at most one major theme for each event
 
 // List 2: Tropes
+/* tropes: fatal mistake, evil older woman, revenge, fairy helper,   
+   deathlike sleep, imprisonment, damsel in distress, heroism, 
+   rescue -> again, pick at most one major theme for each event. 
+   we're looking for similarities, so pick one type of thing and stick to it for multiple events, 
+   even though some of these are similar*/
 
-/*tropes: fatal mistake, evil older woman, revenge, fairy helper, deathlike sleep, imprisonment, damsel in distress, heroism, rescue -> again, pick at most one major theme for each event. we're looking for similarities, so pick one type of thing and stick to it for multiple events, even though some of these are similar*/
 
 // List 3: Trope Incidence
 
@@ -138,7 +144,7 @@ var byTrope = false; //there are two ways to enter data.
 // one wanted.
 // example for 
 //var byTrope = true:
-/*var tropeDict = {
+/*var tropeDict = [
 	{"evil older woman": [5,15,16,]}, 
 	{"fatal mistake":[17]}, 
 	{"deathlike sleep":[18]},
@@ -146,7 +152,7 @@ var byTrope = false; //there are two ways to enter data.
 	{"heroism": [21]},
 	{"rescue":[23]},
 	{"revenge":[27]}
-};*/
+];*/
 
 var tropes = [];
 for (i=1;i<=events.length;i++)
@@ -163,18 +169,25 @@ tropes[23]=["rescue"];
 tropes[27]=["revenge"];
 
 // List 4: Theme Incidence
-//themes: birth, death, joy, good, evil, beauty, inclusion, exclusion, revenge, pursuit of power -> pick at most one major theme for each event
+// 		themes: birth, death, joy, good, evil, beauty, inclusion, exclusion, revenge, 
+// 		pursuit of power -> pick at most one major theme for each event
+
 var themes = [];
 for (i=1;i<=events.length;i++)
 {
 	themes[i-1]=[];
 }
 
-themes[2]=["birth"]; themes[3]=["death"]; themes[7]=["beauty"]; themes[12]=["good"]; themes[13]=["good"]; 
-themes[15]=["evil"]; themes[16]=["evil"]; themes[17]=["evil"]; themes[23]=["joy"]; themes[27]=["revenge"];
+themes[2]=["birth"]; 
+themes[3]=["death"]; 
+themes[7]=["beauty"]; 
+themes[12]=["good"]; themes[13]=["good"]; 
+themes[15]=["evil"]; themes[16]=["evil"]; themes[17]=["evil"]; 
+themes[23]=["joy"]; 
+themes[27]=["revenge"];
 
 
-// List 5: Nodes -> Correspond to Event Incidence
+// List 5: Nodes -> Correspond to Event Incidence here. 
 
 var nodes = [];
 
@@ -184,6 +197,60 @@ for (i=0;i<events.length;i++)
 	nodes[i]={"name":events[i],"id":i,"time":timepoints[i],"chars":chars[i], "themes":themes[i], "tropes":tropes[i], "fixed":false}
 }
 
+// List 6: Links: you can enter them directly as I have done below, or set the boolean var to true. 
+
+var compressedEntry = false; //enables a more efficient data entry format for links
+var columnEntry = false; //
+//how to enter data: 
+//
+// settings: compressedEntry=true, differentValues = true, columnEntry = false
+// format the dictionary entries as - {sourceNodeNumber:[[target1,value1],[target2,value2]]}
+// sources = [
+/* {1:[[0,1]]}, 
+...,
+{5:[[8,1],[10,1],[15,1],[16,1],[17,1]]}
+]...] */
+//
+// settings: compressedEntry=true, differentValues = true, columnEntry = false
+// format the dictionary entries as - {sourceNodeNumber:[[target1,value1],[target2,value2]]}
+// sources = [
+/* {1:[[0,1]]}, 
+...,
+{5:[[8,1],[10,1],[15,1],[16,1],[17,1]]}
+]...] */
+
+var links = [
+{"source":0,"target":1,"value":1,"type":"causal"},
+{"source":1,"target":2,"value":1,"type":"causal"},
+{"source":2,"target":3,"value":1,"type":"causal"},
+{"source":3,"target":4,"value":1,"type":"causal"},
+{"source":5,"target":8,"value":1,"type":"causal"},
+{"source":6,"target":7,"value":1,"type":"causal"},
+{"source":7,"target":9,"value":1,"type":"causal"},
+{"source":8,"target":9,"value":1,"type":"causal"},
+{"source":9,"target":10,"value":1,"type":"causal"},
+{"source":5,"target":10,"value":1,"type":"causal"},
+{"source":10,"target":12,"value":1,"type":"causal"},
+{"source":11,"target":12,"value":1,"type":"causal"},
+{"source":10,"target":13,"value":1,"type":"causal"},
+{"source":12,"target":13,"value":1,"type":"causal"},
+{"source":12,"target":14,"value":1,"type":"causal"},
+{"source":14,"target":15,"value":1,"type":"causal"},
+{"source":15,"target":16,"value":1,"type":"causal"},
+{"source":16,"target":17,"value":1,"type":"causal"},
+{"source":5,"target":15,"value":1,"type":"causal"},
+{"source":5,"target":16,"value":1,"type":"causal"},
+{"source":5,"target":17,"value":1,"type":"causal"},
+{"source":17,"target":18,"value":1,"type":"causal"},
+{"source":18,"target":19,"value":1,"type":"causal"},
+{"source":19,"target":20,"value":1,"type":"causal"},
+{"source":21,"target":22,"value":1,"type":"causal"},
+{"source":21,"target":23,"value":1,"type":"causal"},
+{"source":22,"target":23,"value":1,"type":"causal"},
+{"source":22,"target":25,"value":1,"type":"causal"},
+{"source":23,"target":25,"value":1,"type":"causal"},
+{"source":24,"target":26,"value":1,"type":"causal"},
+{"source":25,"target":26,"value":1,"type":"causal"},
+{"source":26,"target":27,"value":1,"type":"causal"},
+]
 //---------------------------------------------------------------
-
-

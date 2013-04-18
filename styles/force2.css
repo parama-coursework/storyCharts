@@ -1,3 +1,45 @@
+path.link {
+  fill: none;
+  stroke: #999;
+  stroke-width: 1.5px;
+  opacity: .7;
+}
+
+marker#causal {
+  fill: #999;
+  opacity: .8;
+}
+
+marker#background {
+  fill: #999;
+  opacity: .5;
+}
+
+path.link.licensing {
+  stroke: green;
+}
+
+path.link.resolved {
+  stroke-dasharray: 0,2 1;
+}
+
+circle {
+  fill: #ccc;
+  stroke: #aaa;
+  stroke-width: 0.5px;
+}
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+text.shadow {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}
+
 body{
 	font-family: "Helvetica Neue", "Arial", sans-serif;
 }
@@ -15,6 +57,20 @@ circle.node {
 	height: 40px;
 }
 
+div.storyDescription{
+  font-size: 12px;
+  margin-top: -5%;
+
+}
+
+div.howTo{
+  font-size: 11px;
+  margin-left: 20px;
+  /*margin-top: 10px;*/
+  line-height: 100%;
+
+}
+
 .node {
   font: 12px sans-serif;
 }
@@ -26,12 +82,11 @@ circle.node {
 
 div.node {
   border-radius: 6px;
-  width: 50px;
+  /*width: auto;*/
   /*height: 12px;
   margin: -6px 0 0 -6px;*/
   position: absolute;
 }
-
 
 
 div.link {
@@ -54,23 +109,40 @@ line.link {
 	position: relative;
 	font-size:11px;
 	top: 10px;
-	left: 15px;
-	width: 400px;
-	height: 300px;
+	/*left: 15px;*/
+	/*width: 400px;
+	height: 300px;*/
+  padding-bottom: 25px;
+  width: auto;
+  height: auto;
 }
 
 .charBar{
 	position: relative;
 	font-size:11px;
 	/*top: 30px;*/
-	left: 15px;
+  padding-bottom: 15px;
+  width: auto;
+  height: auto;
+	/*left: 15px;
 	width: 400px;
-	height: 300px;
+	height: 300px;*/
+}
+.nodeExpansionButton{
+  position: relative;
+  font-size:11px;
+  /*top: 30px;*/
+  padding-bottom: 15px;
+  width: auto;
+  height: auto;
+  /*left: 15px;
+  width: 400px;
+  height: 300px;*/
 }
 
 rect{
 	fill:none;
-	stroke-width:0.5;
+	stroke-width:0;
 	stroke:black;
 }
 
