@@ -52,7 +52,7 @@ function plotDevices() {
 	    .attr("width", agex)
 	    .attr("height", agey.rangeBand())
 		.style("fill", function(d,i){ 
-		//console.log("fill bar "+fill(i))
+		////console.log("fill bar "+fill(i))
 		return fill20b(18-2*i)
 		})
 		.style("opacity", .7)
@@ -63,7 +63,7 @@ function plotDevices() {
 
 			restoreNodes(selectedTropes, fill(i));
 		})
-			//console.log(selectedChars);
+			////console.log(selectedChars);
 		 	
 			//DM: didn't see this function doing anything
 			//highlight(-1);
@@ -72,13 +72,13 @@ function plotDevices() {
 
 		.on("mouseover", function(d,i) {
 			d3.select(this).style("opacity", 1);
-			console.log("selected trope is: "+ tropesList[i]);
+			//console.log("selected trope is: "+ tropesList[i]);
 			var selectedTropes = tfTropes(tropesList[i]);
 			highlightNodes(selectedTropes, fill(i));}
 
 			//circle.
 			//selectedChars = tfChars(d.name);
-			//console.log(selectedChars);
+			////console.log(selectedChars);
 			/*if(mouseIsDown){
 				if(maxRange < d.index)
 					maxRange = d.index;

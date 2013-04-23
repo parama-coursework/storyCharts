@@ -22,15 +22,7 @@ marker#arrow {
 	padding-left: 10px;
 	padding-bottom: 10px;
 }
-.storyTitle{
-	font-size: medium;
-	color: #000;
-	padding-top: 5px;
-	padding-right: 5px;
-	padding-bottom: 10px;
-	font-weight: bold;
-	text-transform: uppercase;
-}
+
 
 .storyDescription{
 	font-size: small;

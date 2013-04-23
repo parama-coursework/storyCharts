@@ -25,7 +25,8 @@
         <link type="text/css" rel="stylesheet" href="../styles/colorbrewer.css">
         
         <!--Load Story Data-->
-        <script type="text/javascript" src="data/snow_white_data.js"></script>
+        <script type="text/javascript" src="data/cinderella_data.js"></script>
+        <!--<script type="text/javascript" src="data/snow_white_data.js"></script>-->
         <script type="text/javascript" src="data/snow_white_methods.js"></script>
         <script type="text/javascript" src="plot_devices.js"></script>
         <script type="text/javascript" src="character_summaries.js"></script>
@@ -44,7 +45,7 @@
                             <a href="../methods.html">methods</a>
                         </li>
                         <li>
-                            <a href="../examples.html">examples</a>
+                            <a href="../visualizations.html">visualizations</a>
                         </li>
                         <li>
                             <a href="../thanks.html">acknowledgements</a>
@@ -76,11 +77,26 @@
                 </div>
                 <div class="span3">
                 	<div class="howTo" id="howTo">
-                    	<p>Mouse Over Bars <br> to Highlight Nodes</p>
+                    	<p>**Mouse Over Bars <br> to Highlight Nodes</p>
                     </div>
                 </div>
             </div>
             <!--Body content-->
+            <div class="row-fluid">
+                <div class="span1">
+                    <p>
+                    </p>
+                </div>
+                <div class="span6">
+                    <div class="nodeNote" style="padding-top:-20px">
+                    	<p> **Mouse Over Nodes to View Event Descriptions. **Arrows denote Causal Links. </p>
+                    </div>
+                </div>
+                <div class="span5">
+                    <p>
+                    </p>
+                </div>
+            </div>
             <div class="row-fluid">
                 <div class="span1">
                     <p>
@@ -117,7 +133,9 @@
                 </div>
                 <div class="span8">
                     <div class="storyDescription">
-                    	<p><b>Story Description: </b>German fairy tale known in many countries in Europe, the best known version being the German one collected by the Brothers Grimm in 1812 (German: Schneewittchen und die sieben Zwerge, ''Snow White and the Seven Dwarfs''). The German version features such elements as the magic mirror, the poisoned apple, the glass coffin, and the seven dwarfs, who were first given individual names in the Broadway play Snow White and the Seven Dwarfs (1912) and then given different names in Walt Disney's 1937 film Snow White and the Seven Dwarfs.</p><p><b>Number of Coders: </b>4 - JS, PP, DW, CN</p>
+                    	<p><b>Story Description: </b>"Cinderella," or "The Little Glass Slipper", (French: Cendrillon, ou La petite Pantoufle de Verre, Italian: Cenerentola, German: Aschenputtel) is a folk tale embodying a myth-element of unjust oppression/triumphant reward. Thousands of variants are known throughout the world. The title character is a young woman living in unfortunate circumstances that are suddenly changed to remarkable fortune. The story was first published by Charles Perrault in Histoires ou contes du temps passé in 1697, and later by the Brothers Grimm in their folk tale collection Grimms' Fairy Tales.</p><p>
+
+Although both the story's title and the character's name change in different languages, in English-language folklore "Cinderella" is the archetypal name. The word "cinderella" has, by analogy, come to mean one whose attributes were unrecognized, or one who unexpectedly achieves recognition or success after a period of obscurity and neglect. The still-popular story of "Cinderella" continues to influence popular culture internationally, lending plot elements, allusions, and tropes to a wide variety of media.</p><p><b>Number of Coders: </b>4 - JS, PP, DW, CN</p>
 
                     </div>
                 </div>
@@ -138,6 +156,8 @@
 
 	/*var descriptor = $("div.storyDescription");
 		descriptor.append("svg:text").text(description).attr("x", 20).attr("y", 20);*/
+	/*var nodeNote = $("div.nodeNote");
+		nodeNote.append("svg:text").text("**Mouse Over Nodes to View Event Descriptions. **Arrows denote Causal Links.").attr("x", 200).attr("y", 20);*/
 
 
 
@@ -155,8 +175,12 @@
 
 	//var st = Math.max(r, padX);
 	//var edpt = st + nodeX * totTm;
+
+	//find range of times for the timepoints, and then space nodes out accordingly.
+
+	var timeRange = maxVal(timepoints)-minVal(timepoints);
 	
-	var nodeX = Math.floor(w / (maxVal(timepoints) + 0)),
+	var nodeX = Math.floor(w / timeRange),
 		nodeY = Math.floor(h / (timepoints.length + 1)),
 		padX = -30,
 		padY = Math.floor(100);
@@ -241,7 +265,15 @@
 	//var edpt = st + nodeX * totTm;
 
 	    circle.attr("transform", function(d, i) {
-	        d.x = Math.max(r, padX) + (d.time-1)*nodeX;
+	    	if(d.time>0)
+	    	{
+	        	d.x = Math.max(r, padX) + (d.time-1)*nodeX;
+	    	}
+	    	else
+	    	{
+	    		holder = 0-d.time;
+	    		d.x = Math.max(r,padX) + (d.time+holder)*nodeX;
+	    	}	
 	        d.y = Math.max(r, Math.min(h - (1.5 * r + 100 + 5), d.y));
 	        return "translate(" + d.x + "," + d.y + ")";
 	    });
@@ -261,7 +293,7 @@
 	    });
 
 	    $('circle').tipsy({
-	        gravity: 'se',
+	        gravity: 'sw',
 	        html: true,
 	        title: function(d) {
 	            d = this.__data__; //console.log(d);

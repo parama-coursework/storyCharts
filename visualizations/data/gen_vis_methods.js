@@ -34,7 +34,7 @@ function determineDistTropes()
 	tropeslist = [];
 	nodeslist = [];
 	tropescount = []
-	//console.log("length of tropeslist is "+tropeslist.length);
+	////console.log("length of tropeslist is "+tropeslist.length);
 	for(i=0;i<tropes.length;i++)
 	{
 		if(tropes[i].length>0)
@@ -135,7 +135,7 @@ function determineDistThemes()
 
 
 function sortByTrope(d_height){
-	//console.log(d_height);
+	////console.log(d_height);
 	var stats = determineDistTropes();
 	var tropesList = stats[0];
 	var tropesIncidence = stats[1];
@@ -145,7 +145,7 @@ function sortByTrope(d_height){
 	var i=0;
 	var maxima = [];
 	var average = tots/tropesList.length;
-	//console.log("average was "+average);
+	////console.log("average was "+average);
 	
 	for(i=1;i<tropesIncidence.length;i++)
 	{
@@ -154,34 +154,34 @@ function sortByTrope(d_height){
 			maxima.push(i);f
 		}
 	}
-	//console.log(maxima);
+	////console.log(maxima);
 	
 	//now we decide on the y coordinates for the nodes
-	//console.log("dheight is" + d_height);
+	////console.log("dheight is" + d_height);
 	var perc = (events.length-tots)/events.length;
-	//console.log("perc is "+ perc);
+	////console.log("perc is "+ perc);
 	var left = Math.floor(d_height-d_height*perc);
-	//console.log("left is "+ left);
+	////console.log("left is "+ left);
 	var totpx = Math.floor(left/tots); //how many pixels each node w trope has
-	//console.log("totpx is "+ totpx);
+	////console.log("totpx is "+ totpx);
 	
 	//lets order by trope, where no trope is category -1
 	var order = maxima;
-	//console.log("tropesList is "+ tropesList);
+	////console.log("tropesList is "+ tropesList);
 	for(i=0;i<tropesList.length;i++)
 	{
-		//console.log("order is "+order);
-		//console.log("output of contains is " + contain(i,order));
+		////console.log("order is "+order);
+		////console.log("output of contains is " + contain(i,order));
 		
 		if(!contain(i,order))
 		{
 			order.push(i)
 			
-			//console.log("order is now "+ order)
+			////console.log("order is now "+ order)
 		}
 	}
 	order.push(tropesList.length);
-	//console.log("order is" + order);
+	////console.log("order is" + order);
 	
 	var nodeYVals = [];
 	for(i=0;i<events.length;i++)
@@ -189,7 +189,7 @@ function sortByTrope(d_height){
 		nodeYVals[i]=0;
 	}
 	
-	//console.log("nodeYvals initialized at"+ nodeYVals );
+	////console.log("nodeYvals initialized at"+ nodeYVals );
 	
 	for(i=0;i<events.length;i++)
 	{
@@ -199,7 +199,7 @@ function sortByTrope(d_height){
 			var k=0;
 			for(k=0;k<nodesList[j].length;k++)
 			{	nodeYVals[nodesList[j][k]]=i*totpx+Math.floor(totpx*Math.random());
-				//console.log("nodeYvals is"+nodeYVals);
+				////console.log("nodeYvals is"+nodeYVals);
 			}
 		}
 	}
@@ -211,9 +211,9 @@ function sortByTrope(d_height){
 			nodeYVals[i]= tots*totpx+Math.floor((h-left)*Math.random());
 		}
 	}
-	//console.log("nodeyvals is "+nodeYVals);
-	//console.log("tropesIncidence is "+tropesIncidence);
-	console.log("order is "+order);
+	////console.log("nodeyvals is "+nodeYVals);
+	////console.log("tropesIncidence is "+tropesIncidence);
+	//console.log("order is "+order);
 	
 	var labelY = [];
 	labelY = tropesIncidence;
@@ -223,7 +223,7 @@ function sortByTrope(d_height){
 		var val = Math.floor((tropesIncidence[order[i]]*totpx)/2);
 		running_sum = running_sum + tropesIncidence[order[i]]*totpx;
 		labelY[i] = running_sum+val;
-		console.log("labelY is now "+labelY[i]);
+		//console.log("labelY is now "+labelY[i]);
 	}
 	
 	labelY.push((d_height-left)+Math.floor(.5*left));
@@ -240,9 +240,9 @@ function sortByTrope(d_height){
 	giveback.push(nodeYVals);
 	giveback.push(orderedList);
 	giveback.push(labelY);
-	console.log("Node Y vals " + nodeYVals);
-	console.log("Ordered List " + orderedList);
-	console.log("Label Y " + labelY);
+	//console.log("Node Y vals " + nodeYVals);
+	//console.log("Ordered List " + orderedList);
+	//console.log("Label Y " + labelY);
 	
 	return giveback;
 	
@@ -277,13 +277,13 @@ function totalChars()
 		}
 	}
 	
-	//console.log("chartally is "+chartally);
+	////console.log("chartally is "+chartally);
 	return chartally;
 }
 
 function tfChars(name)
 {
-	console.log("in tfChars name is: "+ name);
+	//console.log("in tfChars name is: "+ name);
 	var checker = "";
 	//find out what the abbreviation for this character's id is
 	for(i=0; i<characters.length; i++)
@@ -294,7 +294,7 @@ function tfChars(name)
 		}
 	}
 	
-	//console.log("checker is "+checker);
+	////console.log("checker is "+checker);
 	
 	var tfchars = [];
 	var checked = false;
@@ -304,7 +304,7 @@ function tfChars(name)
 		checked = false;
 		for(j=0; j<chars[i].length; j++)
 		{
-			//console.log("checking..."+chars[i][j]+"..same as "+checker);
+			////console.log("checking..."+chars[i][j]+"..same as "+checker);
 			if(chars[i][j]===checker)
 			{
 				checked = true;
@@ -313,7 +313,7 @@ function tfChars(name)
 		tfchars.push(checked);
 	}
 	
-	//console.log(tfchars);
+	////console.log(tfchars);
 	return tfchars;
 }
 
@@ -328,7 +328,7 @@ function tfTropes(trope)
 	{
 		if(tropes[i][0] === trope)
 		{	
-			console.log("found a match")
+			//console.log("found a match")
 			tfarray.push(true);
 		}
 		else
@@ -391,14 +391,14 @@ function outlineNodes (bls, color)
 				{return color;}
 				else
 				{
-					console.log("circle.style set color for outline of node");
+					////console.log("circle.style set color for outline of node");
 					return "#aaa";
 				}
 				})
 			 .style("opacity", function(d,i){
 				if(bls[i])
 				{
-					console.log("circle id is: "+i);
+					////console.log("circle id is: "+i);
 					return 1;
 				}
 				else
@@ -452,7 +452,7 @@ function highlightNodes (bls, colorScale)
 		node.style("opacity", function(d,i){
 			if(bls[i])
 			{
-				console.log("activated highlightNodes");
+				//console.log("activated highlightNodes");
 				return 1;
 			}
 			else
@@ -462,8 +462,8 @@ function highlightNodes (bls, colorScale)
 		});
 
 		/*.style("background", function(d) {
-		 		//console.log("d.id "+d.id)
-				//console.log("nodevals[d.id] "+nodevals[d.id])
+		 		////console.log("d.id "+d.id)
+				////console.log("nodevals[d.id] "+nodevals[d.id])
 				if(nodevals[d.id]==0)
 				{
 					return "lightgrey"
@@ -487,7 +487,7 @@ function highlightNodes (bls, colorScale)
 			{
 				if(bls[i])
 				{
-					console.log("activated highlightNodes");
+					//console.log("activated highlightNodes");
 					return 1;
 				}
 				else
@@ -509,7 +509,7 @@ function highlightNodes (bls, colorScale)
 
 		path.style("opacity", function(d,i){
 			if(bls[d.target.id] || bls[d.source.id]){
-				console.log("path opacity shouldn't change");
+				//console.log("path opacity shouldn't change");
 				return .7
 			}
 			else
@@ -619,6 +619,10 @@ function expandNodes(){
 
 		$("circle").parent().remove();
 
+		var foo = d3.selectAll("div.nodeNote");
+
+
+
 		var vis = d3.selectAll("#chartBox").append('div')
 			.attr("class","chartBoxDivCanvas")
 			.style("width", "auto")
@@ -630,8 +634,8 @@ function expandNodes(){
 	    	.enter().append("div")
 	      	.attr("class", "node")
 	      	.style("background", function(d) {
-		 		//console.log("d.id "+d.id)
-				//console.log("nodevals[d.id] "+nodevals[d.id])
+		 		////console.log("d.id "+d.id)
+				////console.log("nodevals[d.id] "+nodevals[d.id])
 				if(nodevals[d.id]==0)
 				{
 					return "lightgrey"
@@ -645,10 +649,10 @@ function expandNodes(){
 				return d3.rgb(fill(d.group)).darker(); 
 				})*/
 			.style("opacity", .9)
-			.style("width", nodeX)
+			.style("width", nodeX-2)
 			.call(force.drag);
 
-		//console.log("node variable is there and all of the div nodes were selected");
+		////console.log("node variable is there and all of the div nodes were selected");
 
 		force
 		    .on("tick", tick)
@@ -678,6 +682,9 @@ function expandNodes(){
 				} 
 			});
 
+			//var foo = d3.selectAll("div.nodeNote");
+			foo.style("color", "#f7f7f7");
+
 		function tick() {
 		    /*node.style("left",  function(d) { return (d.x = Math.max(r, nodeX*d.value+20 )) + "px"; })
 		        .style("top", function(d) { return (d.y = Math.max(r, Math.min(h - r, d.y))) + "px";
@@ -703,10 +710,10 @@ function expandNodes(){
 			        dr = 0,
 			        shifter = 0,
 				    original = "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
-				    //console.log("original expander output: "+ original);
+				    ////console.log("original expander output: "+ original);
 			        shifter = -100-r;
 			    var changed = "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
-				//console.log("shifter was used");
+				////console.log("shifter was used");
 
 
 			    return "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
@@ -716,7 +723,7 @@ function expandNodes(){
 
 			    //.style("top", function(d) { return (d.y = Math.max(r, yvals[0][d.id])) + "px"; });
 				.style("top", function(d, i) { 
-					//if(i==5) {console.log("node d.y is: "+ d.y+" for node "+i);}
+					//if(i==5) {//console.log("node d.y is: "+ d.y+" for node "+i);}
 					return (d.y = Math.max(r, Math.min(h - (1.5*r+100+5), d.y)))  + "px";
 	 		});
 
@@ -789,6 +796,9 @@ function contractNodes() {
 					.enter()
 					.append("svg:g");
 
+		var foo = d3.selectAll("div.nodeNote");
+				foo.style("color", "#555");
+
 	    //reposition the path object
 	    /*var circleEltYPos = $("circle").parent().offset().top,
 	        pathEltYPos = $("path.link").parent().offset().top,
@@ -796,13 +806,13 @@ function contractNodes() {
 
 	    var pathways = $("path.link").parent();
 
-	    console.log("old path position: " + pathEltYPos);
-	    console.log("old circle position: " + circleEltYPos);
-	    console.log(posDif);
+	    //console.log("old path position: " + pathEltYPos);
+	    //console.log("old circle position: " + circleEltYPos);
+	    //console.log(posDif);
 
 
 	    pathways.attr("transform", function(d, i) {
-	        //console.log("let's see if this is used");
+	        ////console.log("let's see if this is used");
 	        return "translate(" + 0 + "," + (posDif-r  ) + ")";
 	    });*/
 
@@ -841,7 +851,7 @@ function contractNodes() {
 	        gravity: 'se',
 	        html: true,
 	        title: function(d) {
-	            d = this.__data__; //console.log(d);
+	            d = this.__data__; ////console.log(d);
 	            return d.name;
 	        }
 	    });
@@ -849,7 +859,7 @@ function contractNodes() {
 
 	    /*function tick() {
 
-	        console.log("contractNodes tick function was used");
+	        //console.log("contractNodes tick function was used");
 
 	        var xcoords = [],
 	            ycoords = [];
@@ -875,11 +885,11 @@ function contractNodes() {
 
 	            origx = xcoords;
 	            origy = ycoords;
-	            console.log("origx " + origx);
-	            console.log("origy" + origy);
+	            //console.log("origx " + origx);
+	            //console.log("origy" + origy);
 
-	            console.log("sx " + sx);
-	            console.log("sy " + sy);
+	            //console.log("sx " + sx);
+	            //console.log("sy " + sy);
 
 	        }
 
@@ -896,7 +906,7 @@ function contractNodes() {
 	            ptargety.push(d.target.y);
 	            sourceid.push(d.source.id);
 	            targetid.push(d.target.id);
-	            console.log("this function is being used");
+	            //console.log("this function is being used");
 
 	            return "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
 	        });

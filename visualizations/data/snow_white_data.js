@@ -17,23 +17,6 @@ Story Details:
 
 */
 
-/* 
-
-Data Tables, and Dictionaries
-
-	Tables:
-
-		event_descriptions, time points, characters present, themes, tropes
-
-		- events vs columns: time points, characters, themes, tropes (4 tables)
-
-	Dictionaries:
-
-		characters -> (abbreviations, traits)
-		themes
-		tropes
-
-*/
 
 /* 
 
@@ -199,18 +182,8 @@ for (i=0;i<events.length;i++)
 
 // List 6: Links: you can enter them directly as I have done below, or set the boolean var to true. 
 
-var compressedEntry = false; //enables a more efficient data entry format for links
 var columnEntry = false; //
 //how to enter data: 
-//
-// settings: compressedEntry=true, differentValues = true, columnEntry = false
-// format the dictionary entries as - {sourceNodeNumber:[[target1,value1],[target2,value2]]}
-// sources = [
-/* {1:[[0,1]]}, 
-...,
-{5:[[8,1],[10,1],[15,1],[16,1],[17,1]]}
-]...] */
-//
 // settings: compressedEntry=true, differentValues = true, columnEntry = false
 // format the dictionary entries as - {sourceNodeNumber:[[target1,value1],[target2,value2]]}
 // sources = [

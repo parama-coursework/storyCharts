@@ -5,16 +5,16 @@ function characterSummaries() {
 		for(i=0;i<characters.length;i++)
 		{
 			foo.push[characters[i].name];
-			//console.log(foo);
+			////console.log(foo);
 		}
 
-		//console.log(foo);
+		////console.log(foo);
 
 		var dataB = totalChars();
 		var mortdataB = foo;
 		//mortData = findMortData(5,15);
 
-		var cBarW = 250,
+		var cBarW = 270,
 		    cBarH = 150,
 		    charx = d3.scale.linear().domain([0, 35]).range([0, cBarW]),
 		    chary = d3.scale.ordinal().domain(d3.range(dataB.length)).rangeBands([0, cBarH]);
@@ -73,7 +73,7 @@ function characterSummaries() {
 		    .attr("width", charx)
 		    .attr("height", chary.rangeBand())
 			.style("fill", function(d,i){ 
-			//console.log("fill bar "+fill(i))
+			////console.log("fill bar "+fill(i))
 			return fill20b(i)
 			})
 			.style("opacity", .7)
@@ -84,7 +84,7 @@ function characterSummaries() {
 
 				restoreNodes(selectedChars, fill20b(i));
 			})
-				//console.log(selectedChars);
+				////console.log(selectedChars);
 			 	
 				//DM: didn't see this function doing anything
 				//highlight(-1);
@@ -93,14 +93,14 @@ function characterSummaries() {
 
 			.on("mouseover", function(d,i) {
 				d3.select(this).style("opacity", 1);
-				console.log("selected name is: "+ characters[i].name);
+				//console.log("selected name is: "+ characters[i].name);
 				var chartf = tfChars(characters[i].name);
-				console.log("chartf is: "+chartf);
+				//console.log("chartf is: "+chartf);
 				outlineNodes(chartf, fill20b(i));}
 
 				//circle.
 				//selectedChars = tfChars(d.name);
-				//console.log(selectedChars);
+				////console.log(selectedChars);
 				/*if(mouseIsDown){
 					if(maxRange < d.index)
 						maxRange = d.index;

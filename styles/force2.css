@@ -15,13 +15,6 @@ marker#background {
   opacity: .5;
 }
 
-path.link.licensing {
-  stroke: green;
-}
-
-path.link.resolved {
-  stroke-dasharray: 0,2 1;
-}
 
 circle {
   fill: #ccc;
@@ -40,13 +33,21 @@ text.shadow {
   stroke-opacity: .8;
 }
 
+html,
 body{
 	font-family: "Helvetica Neue", "Arial", sans-serif;
+  height:100%;
 }
 
 circle.node {
   stroke: #999;
   stroke-width: 1.5px;
+}
+
+div.sectionTitle{
+
+  text-align: center;
+
 }
 
 .storyHeading{
@@ -57,9 +58,42 @@ circle.node {
 	height: 40px;
 }
 
+.circular img {
+  min-width:100px;
+  min-height:100px;
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -webkit-filter: sepia(1);
+}
+
+.tinycircular img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-filter: sepia(1);
+}
+
+.storyTitle{
+  font-size: "24";
+  color: #000;
+  /*display: inline-block;*/
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  min-width:200px;
+}
+
 div.storyDescription{
   font-size: 12px;
   margin-top: -5%;
+  font-color: #000;
 
 }
 
@@ -71,14 +105,19 @@ div.howTo{
 
 }
 
+div.nodeNote{
+  font-size: 11px;
+  text-align: left;
+  /*margin-left: 20px;*/
+  /*margin-top: 10px;*/
+  line-height: 90%;
+  /*display: inline-block;*/
+
+}
+
 .node {
   font: 12px sans-serif;
 }
-
-/*div{
-	top: 50px;
-	left: 100px;
-}*/
 
 div.node {
   border-radius: 6px;
@@ -152,12 +191,20 @@ line.axis {
 	fill:none;
 }
 
-/*.rule line {
-	stroke:#eee;
-	stroke-width: 5;
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  padding-bottom:20px;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -25px;
 }
 
-.rule line.axis {
-	stroke:#ccc;
-	stroke-width:2;
-}*/
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 35px;
+}
+#footer {
+  background-color: #fff;
+}

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
   	<head>
-    	<title>Snow White Event Chart</title>
+    	<title>StoryCharts: Methods</title>
     		
 		<!--Load Libraries-->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		
 		<!--Load Styles-->
-		<link rel="stylesheet" href="styles/themes/journal/bootstrap.min.css">
-		<link rel="stylesheet/less" href="styles/themes/journal/bootswatch.less">
-		<link rel="stylesheet/less" href="styles/themes/journal/variables.less">
-		<link rel="stylesheet/less" href="styles/less-1.3.0.min.less">
+        <link rel="stylesheet" href="styles/themes/simplex/bootstrap.min.css">
+        <link rel="stylesheet/less" href="styles/themes/simplex/bootswatch.less">
+        <link rel="stylesheet/less" href="styles/themes/simplex/variables.less">
+        <link rel="stylesheet/less" href="styles/less-1.3.0.min.less">
+        <link type="text/css" rel="stylesheet" href="styles/tipsy.css">
+        <link type="text/css" rel="stylesheet" href="styles/story.css">
+        <link type="text/css" rel="stylesheet" href="styles/force2.css">
 		
-		<!--Load Story Data-->
-		<script type="text/javascript" src="data/snow_white.js"></script>
 		
 	</head>
 	
@@ -21,51 +22,106 @@
 	
 	<!--Navigation Bar-->
 		
-		<div class="navbar">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="brand">Story Charts</a>
-		               <ul class="nav">
-						<li class="active"><a href="home.html">Home</a></li>
-						<li ><a href="background.html">Background</a></li>
-		                <li ><a href="methods.html">Methods</a></li>
-		                <li ><a href="examples.html">Examples</a></li>
-		                <li ><a href="resources.html">Resources</a></li>
-		                <li ><a href="assignments.html">Assignments</a></li>
-		                <li ><a href="thanks.html">Thanks</a></li>
-					</ul>
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="brand" href="index.html">Story Charts</a>
+			               <ul class="nav pull-right">
+			               	<li ><a href="summary.html">summary</a></li>
+			                <li ><a href="methods.html">methods</a></li>
+			                <li ><a href="visualizations.html">visualizations</a></li>
+			                <li ><a href="thanks.html">acknowledgements</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
 
 		
 	<!--Page Content-->
 		
 		<div class="container-fluid">
 			<div class="row-fluid">  
-		    	<div class="span2">  
-				<div class="sidebar">
-		      	<div class ="row-fluid"></div>
-					<div class ="storyTitle"></div>
-				<div class ="row-fluid"></div>
-					<div class ="storyDescription"></div>
-				</div>
-				</div>
-				<div class="span10">  
-		     	<!--Body content-->
-				<div class="row-fluid">
-					
-					<div class="span8"> <!--contains the chart name and chart box-->
-						<div class="content">
+				<div class="span3"><p></p></div>
+				<div class="span6">
+					<p>
+						<div class="sectionTitle">
+							<h1> methods </h1>
+							<hr>
 						</div>
-					</div> 
-					
-					<div class="span2 selectorCharts"> <!--contains selection charts-->
-					</div>
-					
-		    	</div>
-				</div>  
+					</p>
+				</div>
+				<div class="span3"><p></p></div>
 			</div>
+			<div class="row-fluid"> 
+				<div class="span3"><p></p></div>
+				<div class="span6">
+					<div class= "topicTitle" style="text-align:center;">
+						<p>A summary of the resources and process used to make these visualizations. 
+						</p>
+					</div>
+					<h2>libraries and resources</h2>
+					<p>
+						All visualizations and data processing are done in javascript. 
+					</p>
+					<ul>  
+						<li>  
+							Jquery
+						</li> <li> 
+							<a href="http://www.d3js.org" style="color: #555;">Data Driven Documents, or d3.js,  a web-based interactive visualization library</a>
+						</li>  
+						<li> 
+							<a href="http://www.colorbrewer2.org" style="color: #555;">Colorbrewer2 by Cynthia Brewer</a>
+						</li>
+					</ul>
+					<hr>
+					<h2>data processing</h2>
+					<ol>  
+						<li>  
+						First, human beings analyze a story, summarizing the main events, marking causal connections between events, and associating important characters, plot devices or tropes, and themes. In the case of Macbeth, the Genesis Project provided analysis of the story. 
+						<table border="0" align="center" cellpadding="10px" style="text-align:left;">
+							<tr>
+								<td><img src="sleepingBeautyRawAnalysisScan.png" alt=""></td>
+							</tr>
+							<tr>
+								<td>Example of one individual's raw analysis of Sleeping Beauty</td>
+							</tr>
+						</table>
+						</li> <li> 
+						Since the number of people who analyzed the stories was small, consensus on important events was reached by taking events, themes, tropes, and character sets that at least 3 out of the four coders agreed on.   
+						</li>  
+						<li> 
+						Data is encoded in the *story name here*_data.js files.  
+						</li>
+						<li>
+						All data processing and drawing methods are stored in *story name here*_methods.js files. Jquery and d3.js were the libraries used to generate all plots and interaction. Copies of all scripts are available on github. 
+						</li>  
+					</ol>
+					<hr>
+					<h2>alternative implementation libraries</h2>
+					<div class= "topicTitle" style="text-align:left;">
+						<p>Similar interactive visualizations can be generated by a variety of libraries, the best ones (ie the ones that would provide the easiest transition)
+						</p>
+					</div>					
+					<ul>  
+						<li>  
+							<b>Java: </b> <a href="http://www.prefuse.org/" style="color: #555;">Prefuse: An Information Visualization Toolkit</a>
+						</li> <li> 
+							<b>Actionscript: </b> <a href="http://flare.prefuse.org/" style="color: #555;">Prefuse: An Information Visualization Toolkit</a>
+						</li>  
+						<li> 
+							<b>Compatibility Note:</b> d3.js, and therefore these interactive visualizations are accessible to most modern versions of browsers, but are not visible to older versions of Internet Explorer (IE 8,7, and 6) and as such they are best viewed in either Chrome or Firefox. 
+						</li>
+					</ul>
+				</div>
+				<div class="span3"><p></p></div>				  
+			</div>
+			
+			<div class="row-fluid">
+				<div class="footer" style="text-align:center; padding-top:40px">
+				<p> <a href="http://www.paramapal.com" style="color: #555;">Parama Pal</a> | Spring 2012 | 6.833 | Final Project </p>
+				</div>
+			</div>				
+		     	<!--Body content-->
 		</div>
 		
 	</body>

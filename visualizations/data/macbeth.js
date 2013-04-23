@@ -115,7 +115,7 @@ var links = [
 {"source":23,"target":24,"value":1},
 {"source":23,"target":25,"value":1},
 {"source":16,"target":18,"value":1},
-{"source":18,"target":20,"value":1},
+{"source":18,"target":20,"value":1}
 ]
 
 var nodes = [];
