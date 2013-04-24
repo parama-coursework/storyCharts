@@ -39,7 +39,7 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="../home.html">Story Charts</a>
+                    <a class="brand" href="../index.html">Story Charts</a>
                     <ul class="nav pull-right">
                         <li>
                             <a href="../methods.html">methods</a>
@@ -154,6 +154,7 @@ animated film.</p><p><b>Number of Coders: </b>4 - JS, PP, DW, CN</p>
         <script type="text/javascript">
         	
 	var expandedBubbles = false;
+        var holderbool = false;
 
 	var titler = $("div.storyTitle");
 		titler.append("svg:text").text(title).attr("fill", "#333").attr("x", 20).attr("y", 20);
@@ -184,7 +185,7 @@ animated film.</p><p><b>Number of Coders: </b>4 - JS, PP, DW, CN</p>
 
 	var timeRange = maxVal(timepoints)-minVal(timepoints);
 	
-	var nodeX = Math.floor(w / timeRange),
+	var nodeX = Math.floor(w / (timeRange+1)),
 		nodeY = Math.floor(h / (timepoints.length + 1)),
 		padX = -30,
 		padY = Math.floor(100);

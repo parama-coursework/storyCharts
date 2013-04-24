@@ -685,6 +685,13 @@ function expandNodes(){
 			//var foo = d3.selectAll("div.nodeNote");
 			foo.style("color", "#f7f7f7");
 
+var holdervar = -1;
+
+if(holderbool)
+{
+	holdervar = 0;
+}
+
 		function tick() {
 		    /*node.style("left",  function(d) { return (d.x = Math.max(r, nodeX*d.value+20 )) + "px"; })
 		        .style("top", function(d) { return (d.y = Math.max(r, Math.min(h - r, d.y))) + "px";
@@ -697,29 +704,40 @@ function expandNodes(){
 
 			
 
-	 		  circle.attr("transform", function(d,i) {
-			  	d.x = Math.max(r, nodeX*d.time+padX-r );
-			  	d.y = Math.max(r, Math.min(h - (1.5*r+100+5), d.y));
-			    return "translate(" + d.x + "," + d.y + ")";
+	 		circle.attr("transform", function(d, i) {
+		    	if(d.time>0)
+		    	{
+		        	d.x = Math.max(r, padX) + (d.time-1)*nodeX;
+		    	}
+		    	else
+		    	{
+		    		holder = 0-d.time;
+		    		d.x = Math.max(r,padX) + (d.time+holder)*nodeX;
+		    	}	
+		        d.y = Math.max(r, Math.min(h - (1.5 * r + 100 + 5), d.y));
+		        return "translate(" + d.x + "," + d.y + ")";
+	    });
+
+		  path.attr("d", function(d, i) {
+		    var dx = d.target.x - d.source.x,
+		        dy = d.target.y - d.source.y,
+		        //dr = Math.sqrt(dx * dx + dy * dy);
+		        dr = 0,
+		        shifterx = (1+holdervar)*nodeX;
+		        shifter = 0,
+			    original = "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
+			    ////console.log("original expander output: "+ original);
+		        shifter = -100-r;
+		    var changed = "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
+			////console.log("shifter was used");
+
+
+			    return "M" + (d.source.x+shifterx) + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + (d.target.x+shifterx) + "," + (d.target.y + shifter);
 			  });
 
-			  path.attr("d", function(d, i) {
-			    var dx = d.target.x - d.source.x,
-			        dy = d.target.y - d.source.y,
-			        //dr = Math.sqrt(dx * dx + dy * dy);
-			        dr = 0,
-			        shifter = 0,
-				    original = "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
-				    ////console.log("original expander output: "+ original);
-			        shifter = -100-r;
-			    var changed = "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
-				////console.log("shifter was used");
-
-
-			    return "M" + d.source.x + "," + (d.source.y + shifter) + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + (d.target.y + shifter);
-			  });
-
-			  node.style("left", function(d) { return (d.x = Math.max(r, nodeX*(d.time-1)+padX+(widthBox/6) )) + "px"; })
+			  
+			  node.style("left", function(d) { 
+			  	return (d.x = Math.max(r, nodeX*(d.time+holdervar)+ padX + (widthBox/6) )) + "px"; })
 
 			    //.style("top", function(d) { return (d.y = Math.max(r, yvals[0][d.id])) + "px"; });
 				.style("top", function(d, i) { 
@@ -729,9 +747,9 @@ function expandNodes(){
 
 
 
-			  text.attr("transform", function(d) {
-			    return "translate(" + d.x + "," + d.y + ")";
-			  }); 
+		  text.attr("transform", function(d) {
+		    return "translate(" + d.x + "," + d.y + ")";
+		  }); 
  		}
  	}
 }
@@ -828,7 +846,14 @@ function contractNodes() {
 	//var edpt = st + nodeX * totTm;
 
 	    circle.attr("transform", function(d, i) {
-	        d.x = Math.max(r, padX) + (d.time-1)*nodeX;
+	        if(holderbool)
+                { holder = 0;
+	    		 d.x = Math.max(r,padX) + (d.time+holder)*nodeX;
+                }
+                else
+                {
+                 d.x = Math.max(r, padX) + (d.time-1)*nodeX;
+                }
 	        d.y = Math.max(r, Math.min(h - (1.5 * r + 100 + 5), d.y));
 	        return "translate(" + d.x + "," + d.y + ")";
 	    });

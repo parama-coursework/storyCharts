@@ -80,7 +80,7 @@
 						First, human beings analyze a story, summarizing the main events, marking causal connections between events, and associating important characters, plot devices or tropes, and themes. In the case of Macbeth, the Genesis Project provided analysis of the story. 
 						<table border="0" align="center" cellpadding="10px" style="text-align:left;">
 							<tr>
-								<td><img src="sleepingBeautyRawAnalysisScan.png" alt=""></td>
+								<td><img src="images/sleepingBeautyRawAnalysisScan.png" alt=""></td>
 							</tr>
 							<tr>
 								<td>Example of one individual's raw analysis of Sleeping Beauty</td>
@@ -93,7 +93,7 @@
 						Data is encoded in the *story name here*_data.js files.  
 						</li>
 						<li>
-						All data processing and drawing methods are stored in *story name here*_methods.js files. Jquery and d3.js were the libraries used to generate all plots and interaction. Copies of all scripts are available on github. 
+						All data processing and drawing methods are stored in *story name here*_methods.js files. Jquery and d3.js were the libraries used to generate all plots and interaction. Copies of all scripts are available on <a href="https://github.com/parama/storyCharts">github</a>. 
 						</li>  
 					</ol>
 					<hr>
@@ -112,6 +112,22 @@
 							<b>Compatibility Note:</b> d3.js, and therefore these interactive visualizations are accessible to most modern versions of browsers, but are not visible to older versions of Internet Explorer (IE 8,7, and 6) and as such they are best viewed in either Chrome or Firefox. 
 						</li>
 					</ul>
+					<hr>
+					<h2>implementation steps for Java</h2>
+					<div class= "topicTitle" style="text-align:left;">
+						<p>Force diagrams in the prefuse library take in xml files detailing the links. 
+						</p>
+					</div>					
+					<ol>  
+						<li> 
+							Charts were implemented using a force diagram layout base. You can see an example/template layout for force layouts in the included demo set for prefuse. 
+						</li><li>  
+							Anchor nodes along either the x or y axis, whichever you have chosen to denote chronology. In the case of these plots, I chose the x-axis from left to right for ascending time. An interesting idea for Java implementation would also be to include checkboxes for sorting via various criteria along the opposing axis, so one could bound the nodes in that category on the y axis if using our example as a template according to category. 
+						</li>   
+						<li> 
+							The prefuse wiki has many demo widgets that other people have added to force diagrams such as searching and highlighting for terms, which means that the java implementation has a realistic scope for showing much larger event sets that could be dynamically filtered or highlighted via search or category checkboxes, both of which are very easy to implement in prefuse (many examples exist that are essentially copy pasting in code). 
+						</li>
+					</ol>
 				</div>
 				<div class="span3"><p></p></div>				  
 			</div>

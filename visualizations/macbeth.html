@@ -39,7 +39,7 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="../home.html">Story Charts</a>
+                    <a class="brand" href="../index.html">Story Charts</a>
                     <ul class="nav pull-right">
                         <li>
                             <a href="../methods.html">methods</a>
@@ -163,6 +163,13 @@ Macbeth is Shakespeare’s shortest tragedy, and tells the story of a brave Scot
 	/*var nodeNote = $("div.nodeNote");
 		nodeNote.append("svg:text").text("**Mouse Over Nodes to View Event Descriptions. **Arrows denote Causal Links.").attr("x", 200).attr("y", 20);*/
 
+    diff = 1-minVal(timepoints);
+
+    for(i=0;i<timepoints.length; i++)
+    {
+        timepoints[i]=timepoints[i]+diff;
+    }
+
 
 
 	var widthB = $("div.content"),
@@ -184,7 +191,7 @@ Macbeth is Shakespeare’s shortest tragedy, and tells the story of a brave Scot
 
 	var timeRange = maxVal(timepoints)-minVal(timepoints);
 	
-	var nodeX = Math.floor(w / timeRange),
+	var nodeX = Math.floor(w / (timeRange+1)),
 		nodeY = Math.floor(h / (timepoints.length + 1)),
 		padX = -30,
 		padY = Math.floor(100);
@@ -262,22 +269,25 @@ Macbeth is Shakespeare’s shortest tragedy, and tells the story of a brave Scot
 
 	// Use elliptical arc path segments to doubly-encode directionality.
 
+var holderbool = true;
+
 	function tick() {
 
 
 	//var st = Math.max(r, padX);
 	//var edpt = st + nodeX * totTm;
 
+
 	    circle.attr("transform", function(d, i) {
-	    	if(d.time>0)
-	    	{
-	        	d.x = Math.max(r, padX) + (d.time-1)*nodeX;
-	    	}
-	    	else
-	    	{
-	    		holder = 0-d.time;
-	    		d.x = Math.max(r,padX) + (d.time+holder)*nodeX;
-	    	}	
+
+                if(holderbool)
+                { holder = 0;
+	    		 d.x = Math.max(r,padX) + (d.time+holder)*nodeX;
+                }
+                else
+                {
+                 d.x = Math.max(r, padX) + (d.time-1)*nodeX;
+                }
 	        d.y = Math.max(r, Math.min(h - (1.5 * r + 100 + 5), d.y));
 	        return "translate(" + d.x + "," + d.y + ")";
 	    });
